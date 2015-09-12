@@ -7,10 +7,10 @@ Here is what works:
  * Default content
  * Section add/remove (Well, Ok, most of this is done by the CMS itself...)
  * Displaying Markdown content (The heavy lifting is done by Parsedown 1.5.0)
+ * inline content editing -- Woohooo!
 
 Here are the outstanding points:
- * no online content editing whatsoever... Yay for editing PHP files through FTP!
- * probably add Parsedown Extra
+ * add Parsedown Extra
  * get unique addon ID to publish to GPEasy plugin repository (well, this is absolutely the last item on the list...)
 
 The project uses Parsedown 1.5.0 for transforming Markdown into HTML.
