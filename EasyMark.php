@@ -1,7 +1,6 @@
 <?php
 defined('is_running') or die('Not an entry point...');
 
-include $addonPathCode."lib/parsedown/Parsedown.php";
 
 class EasyMark
 {
@@ -14,11 +13,16 @@ class EasyMark
 	}
 
 	function SectionToContent($section_data) {
+		global $addonPathCode;
+		
+		require_once $addonPathCode."/lib/parsedown/Parsedown.php";
+		require_once $addonPathCode."/lib/parsedown/ParsedownExtra.php";
+
 		if( $section_data['type'] != self::$sectionType ) {
 			return $section_data;
 		}
 		
-		$section_data['content']=(new ParseDown())->text(htmlspecialchars($section_data['content']));
+		$section_data['content']=(new ParseDownExtra())->text(htmlspecialchars($section_data['content']));
 		return $section_data;
 	}
 	
