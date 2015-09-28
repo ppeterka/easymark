@@ -10,15 +10,17 @@ Here is what works:
  * Displaying Markdown Extra content (The heavy lifting is done by Parsedown Extra 0.7.0)
  * Inline content editing -- Woohooo! (Ok, I copied most of the JavaScript work from the "Execute PHP" plugin available in the GPEasy repo...)
  * Downloadable from the GPEasy plugin repository: [EasyMark: MarkDown for GPEasy](http://gpeasy.com/Plugins/301_EasyMark_MarkDown_for_GPEasy)
+ * WYSIWYG-like operation: not completely WYSIWYG, and not instantaneous, but this is a lot more convenient to use than without...
 
 Here are the outstanding points:
  * add some kind of link to help or cheatsheet regarding Markdown to the inline editing part
- * "WYSIWYG" like operation? Would be very cool, it is quite clumsy not to see the edited text right away
+ 
 
 Release notes:
 1.2: Feature release (not released yet!)
  * Markdown Extra
  * Minor bugfix: variable not found error fixed
+ * WYSIWYG-like operation! Yay! Not the nicest (currently uses HTTP GET requests to a special page...), but at least works most of the time. Would be nicer with posts, but having to get a nonce does not make that too easy...
 1.1: Initial release, minimal functionality
  * Markdown parsing, inline editing works, as well as Section add and remove
   

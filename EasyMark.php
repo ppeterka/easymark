@@ -15,27 +15,26 @@ class EasyMark
 	function SectionToContent($section_data) {
 		global $addonPathCode;
 		
-		require_once $addonPathCode."/lib/parsedown/Parsedown.php";
-		require_once $addonPathCode."/lib/parsedown/ParsedownExtra.php";
+		if( $section_data['type'] == self::$sectionType ) {
+			require_once $addonPathCode."/lib/parsedown/Parsedown.php";
+			require_once $addonPathCode."/lib/parsedown/ParsedownExtra.php";
 
-		if( $section_data['type'] != self::$sectionType ) {
-			return $section_data;
+			$section_data['content']=(new ParseDownExtra())->text(htmlspecialchars($section_data['content']));
 		}
 		
-		$section_data['content']=(new ParseDownExtra())->text(htmlspecialchars($section_data['content']));
 		return $section_data;
 	}
 	
 	function DefaultContent($default_content,$type) {
-		if( $type != self::$sectionType ) {
-			return $default_content;
+		if( $type == self::$sectionType ) {
+			$section = array();
+			$section['content'] = "Hello **MarkDown** _world_!!!";
+			$section['uniqid'] = "em-" . crc32(uniqid("",true));
+			return $section;
 		}
-
-		$section = array();
-		$section['content'] = "Hello **MarkDown** _world_!!!";
-		$section['uniqid'] = "em-" . crc32(uniqid("",true));
-		return $section;
+		return $default_content;
 	}
+
 	
 	function SaveSection($return,$section,$type) {
 		if( $type != self::$sectionType ) {
@@ -57,11 +56,9 @@ class EasyMark
 	function InlineEdit_Scripts($scripts,$type) {
 		global $addonPathCode;
 		
-		if( $type != self::$sectionType ) {
-		  return $scripts;
+		if( $type == self::$sectionType ) {
+			$scripts[] = $addonPathCode.'/js/edit.js';
 		}
-		
-		$scripts[] = $addonPathCode.'/js/edit.js';
 		return $scripts; 
 	}
 }
