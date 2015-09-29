@@ -14,13 +14,16 @@ Here is what works:
 
 Here are the outstanding points:
  * add some kind of link to help or cheatsheet regarding Markdown to the inline editing part
- 
 
 Release notes:
-1.2: Feature release (not released yet!)
+1.3: WIP
+ * fix double escaping in code blocks
+
+1.2: Feature release
  * Markdown Extra
  * Minor bugfix: variable not found error fixed
- * WYSIWYG-like operation! Yay! Not the nicest (currently uses HTTP GET requests to a special page...), but at least works most of the time. Would be nicer with posts, but having to get a nonce does not make that too easy...
+ * **WYSIWYG-like operation**! Yay! Not the nicest (currently uses HTTP GET requests to a special page...), but at least works most of the time. Would be nicer with posts, but having to get a nonce does not make that too easy...
+ 
 1.1: Initial release, minimal functionality
  * Markdown parsing, inline editing works, as well as Section add and remove
   
