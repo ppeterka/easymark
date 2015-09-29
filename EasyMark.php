@@ -19,7 +19,7 @@ class EasyMark
 			require_once $addonPathCode."/lib/parsedown/Parsedown.php";
 			require_once $addonPathCode."/lib/parsedown/ParsedownExtra.php";
 
-			$section_data['content']=(new ParseDownExtra())->text(htmlspecialchars($section_data['content']));
+			$section_data['content']=(new ParseDownExtra())->setMarkupEscaped(true)->text($section_data['content']);
 		}
 		
 		return $section_data;
