@@ -23,15 +23,15 @@ function stuff() {
 	gp_editing.editor_tools();
 	var edit_div = gp_editing.get_edit_area(area_id);
 
-	mainDiv = $('<div style="width:100%;margin:0;border:0 none;position:relative; vertical-align:top" />');
+	mainDiv = $('<div style="width:100%;margin:0;border:0 none;position:relative; vertical-align:top;display:table;" />');
 	edit_div.html(mainDiv);
 	
 	//set up textarea
-	textarea = $('<textarea id="easymark_textarea" style="width:49%;margin:0;border:0 none;display:inline-block;" />').val(section_object.content);
+	textarea = $('<textarea id="easymark_textarea" style="width:100%; height:100%;margin:0;border:0 none;display:table-cell; vertical align:top;" />').val(section_object.content);
 	mainDiv.append(textarea);
 
 	//set up content div...
-	wysiwygDiv = $('<div id="easymark_wysiwyg_div" style="width:49%;margin:0;border:0 none; right:0px;display:inline-block;">Loading...</div>');
+	wysiwygDiv = $('<div id="easymark_wysiwyg_div" style="width:50%; height:100%;margin:0;border:0 none; right:0px;display:table-cell; vertical-align:top;">Loading...</div>');
 	mainDiv.append(wysiwygDiv);
 	
 	setInterval(stuff, 5000);
