@@ -5,7 +5,7 @@ defined('is_running') or die('Not an entry point...');
 
 class EasyMarkWysiwyg
 {
-	function EasyMarkWysiwyg() {
+	public static function getStuff() {
 		if(common::LoggedIn()) {
 		
 			global $addonPathCode, $page; 
@@ -23,8 +23,6 @@ class EasyMarkWysiwyg
 			print "Have to be logged in to use this feature";
 		}
 	}
-
-
 }
 
 
