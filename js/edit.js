@@ -2,7 +2,7 @@
  *  Copied and changed from "Execute PHP" plugin
  */
 function stuff() {
-	$.get( "/EasyMarkWysiwyg", 
+	$.get( gpBLink+"/EasyMarkWysiwyg", 
 		{ 
 			content: $('#easymark_textarea').val() ,
 			gpreq: 'flush',
