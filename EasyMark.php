@@ -13,13 +13,19 @@ class EasyMark
 	}
 
 	function SectionToContent($section_data) {
-		global $addonPathCode;
+		global $addonPathCode,$addonPathData;
 		
 		if( $section_data['type'] == self::$sectionType ) {
-			require_once $addonPathCode."/lib/parsedown/Parsedown.php";
-			require_once $addonPathCode."/lib/parsedown/ParsedownExtra.php";
-
-			$section_data['content']=(new ParseDownExtra())->setMarkupEscaped(true)->text($section_data['content']);
+			$config= array();
+			$conf = $addonPathData.'/config.php';
+			if(file_exists($conf) ){
+				include($conf);
+				$config = $settings;
+				var_dump($config);
+			}
+			
+			require_once $addonPathCode."/Renderer.php";
+			$section_data['content'] = (new Renderer($config, $addonPathCode."/lib/parsedown/"))->render($section_data['content']);
 		}
 		
 		return $section_data;

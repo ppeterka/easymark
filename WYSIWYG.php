@@ -7,17 +7,16 @@ class EasyMarkWysiwyg
 {
 	public static function getStuff() {
 		if(common::LoggedIn()) {
+		  if($config['wysiwygEnabled']) {
 		
 			global $addonPathCode, $page; 
-	
-			require_once $addonPathCode."/lib/parsedown/Parsedown.php";
-			require_once $addonPathCode."/lib/parsedown/ParsedownExtra.php";
+			require_once $addonPathCode."/Renderer.php";
 			
-			print( (new ParseDownExtra())->text(htmlspecialchars($_REQUEST['content'])) );
-
+			print (new Renderer($config, $addonPathCode."/lib/parsedown").render($_REQUEST['content']));
+			print "<script>setTimeout(stuff, ".$config['wysiwygDelay'].");</script>";
 			// cleanup old page object
 			unset($page); 
-			
+		  }
 		}
 		else {
 			print "Have to be logged in to use this feature";
