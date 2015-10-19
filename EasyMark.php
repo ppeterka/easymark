@@ -21,7 +21,6 @@ class EasyMark
 			if(file_exists($conf) ){
 				include($conf);
 				$config = $settings;
-				var_dump($config);
 			}
 			
 			require_once $addonPathCode."/Renderer.php";

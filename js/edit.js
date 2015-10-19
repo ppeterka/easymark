@@ -2,11 +2,13 @@
  *  Copied and changed from "Execute PHP" plugin
  */
 function stuff() {
-	$.get( gpBLink+"/EasyMarkWysiwyg", 
+	$.post( gpBLink+"/EasyMarkWysiwyg", 
 		{ 
 			content: $('#easymark_textarea').val() ,
 			gpreq: 'flush',
-			rp: ''
+			rp: '',
+			nonce: nonceStr,
+			verified: post_nonce
 		} 
 	  ).done(
 		function( data ) {
@@ -14,6 +16,21 @@ function stuff() {
 		}
 	  );
 }
+
+function stuffx() {
+	$.get( gpBLink+"/EasyMarkWysiwyg", 
+		{ 
+			content: '**Loading...**',
+			gpreq: 'flush',
+			rp: '',
+		} 
+	  ).done(
+		function( data ) {
+			$('#easymark_wysiwyg_div').html(data);
+		}
+	  );
+}
+
 
  
  function gp_init_inline_edit(area_id,section_object){
@@ -34,8 +51,9 @@ function stuff() {
 	wysiwygDiv = $('<div id="easymark_wysiwyg_div" style="width:50%; height:100%;margin:0;border:0 none; right:0px;display:table-cell; vertical-align:top;">Loading...</div>');
 	mainDiv.append(wysiwygDiv);
 	
-	setInterval(stuff, 5000);
-
+	//setInterval(stuff, 5000);
+	stuffx();
+	
 	gp_editor = {
 		save_path: gp_editing.get_path(area_id),
 
