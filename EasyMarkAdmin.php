@@ -8,7 +8,7 @@ class EasyMarkAdmin {
 
 	//  defaults
 	var $defaults = array(
-		'wysiwygDelay' => '5',
+		'wysiwygDelay' => '2',
 		'wysiwygEnabled' => 'true',
 		'markupEscaped' => true,
 		'breaksEnabled' => false,
@@ -17,16 +17,25 @@ class EasyMarkAdmin {
 	
 	function admin() {
 		// include globals
-		global $page,$langmessage,$dataDir,$addonPathData,$addonRelativeCode;
+		global $addonPathData;
 		$this->conf = $addonPathData.'/config.php';
 		$this->getSettings();
 		
 		if(common::LoggedIn()) {
 			$cmd = common::GetCommand();
-			if($cmd == 'saveSettings') { 
-				$this->saveSettings();
-			}
-			$this->showSettings();
+			switch($cmd) {
+				//intentionally no break!
+				case 'saveSettings':
+					$this->saveSettings();
+				
+				default:
+					$this->showSettings();
+				break;
+				
+			    case 'renderContent':
+					$this->renderContent();
+				break;
+		    }
 		}
 	}
 		
@@ -35,10 +44,15 @@ class EasyMarkAdmin {
 			include($this->conf);
 			$this->settings = $settings;
 		}
+		else {
+			$this->settings = $defaults;
+		}
 	}
+	
 	private function updateBooleanSetting($settingName) {
 		$this->settings[$settingName] = isset($_POST[$settingName]);
 	}
+	
 	private function updateSetting($settingName) {
 		$this->settings[$settingName] = (isset($_POST[$settingName])) ? $_POST[$settingName] :	$this->defaults[$settingName];
 	}
@@ -59,12 +73,13 @@ class EasyMarkAdmin {
 		message($langmessage['OOPS']);
 		$this->settings=$_POST;
 	}
+	
 	private function putField($type, $name, $label, $valueString, $checked = false) {
 		echo '<label><input type="'.$type.'" name="'.$name.'" value="'.$valueString.'"'.($checked?'checked':'').'>'.$label.'</label><br>';
 	}
 	
 	private function showSettings() {
-		//print_r($this->settings);
+		global $langmessage;
 		echo '<h2>Settings</h2>';
 		echo '<form action="'.common::GetUrl('Admin_EasyMark').'" method="post">'; 
 		
@@ -83,5 +98,32 @@ class EasyMarkAdmin {
 		echo '</form>';
 	}
 
+	private function renderContent() {
+		if(common::LoggedIn()) {
+		  if($this->settings['wysiwygEnabled']) {
+		
+			global $addonPathCode, $page; 
+			require_once $addonPathCode."/Renderer.php";
+			
+			print (new Renderer($this->settings, $addonPathCode."/lib/parsedown"))->render($_REQUEST['content']);
+		
+			//haha, very secure. NOT!
+			$nonce_str = 'EasyMark4Life!';
+		
+			//TODO: sanitize $config stuff
+			//"getPostResponseEasyMark" is defined in edit.js
+			print "<script>";
+				print "var postNonce = '".common::new_nonce('post',true)."';";
+				print "setTimeout(getPostResponseEasyMark, ".htmlspecialchars($this->settings['wysiwygDelay'])."*1000);";
+			print "</script>";
+			
+			// cleanup old page object
+			unset($page); 
+		  }
+		}
+		else {
+			print "Have to be logged in to use this feature";
+		}
+	}
 	
 } 

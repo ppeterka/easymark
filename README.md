@@ -19,14 +19,15 @@ GPEasy is a fun little CMS, somehow I thought it would benefit from having a Mar
 ## Release notes:
 
 ### 1.3: WIP
+ * Merged fix for JS to be able to work in cases when framework is installed under subfolder
  * Admin page with a lot of (OK, actually 5) configurable options!
  * Fix double escaping in code blocks (actually done so by adding the admin page options)
  * WYSIWYG stuff works with POST requests instead of GET
  * Updated Parsedown to 1.6
+ * Removed Special Link - now WYSIWYG implemented in Admin part
+ * Some PHP and JS refactor to have nicer code 
 
 #### TODO before release:
- * do a refactor to remove ugliness/clean up code both PHP and JS
- * probably remove the Special used for the WYSIWYG editing and move the functionality to the Admin part
 
 ### 1.2: Feature release
  * Markdown Extra

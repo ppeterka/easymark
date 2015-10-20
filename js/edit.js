@@ -1,39 +1,38 @@
 /**
  *  Copied and changed from "Execute PHP" plugin
  */
-function stuff() {
-	$.post( gpBLink+"/EasyMarkWysiwyg", 
+
+function replaceEasyMarkWYSIWYGDiv( data ) {
+	$('#easymark_wysiwyg_div').html(data);
+}
+ 
+//used by the WYSIWYG display
+function getPostResponseEasyMark() {
+	$.post( gpBLink+"/Admin_EasyMark", 
 		{ 
 			content: $('#easymark_textarea').val() ,
 			gpreq: 'flush',
 			rp: '',
-			nonce: nonceStr,
-			verified: post_nonce
+			verified: post_nonce,
+			cmd: 'renderContent'
 		} 
-	  ).done(
-		function( data ) {
-			$('#easymark_wysiwyg_div').html(data);
-		}
-	  );
+	  ).done(replaceEasyMarkWYSIWYGDiv);
 }
 
-function stuffx() {
-	$.get( gpBLink+"/EasyMarkWysiwyg", 
+//initiates the WYSIWYG display
+function getGetResponseEasyMark() {
+	$.get( gpBLink+"/Admin_EasyMark", 
 		{ 
 			content: '**Loading...**',
 			gpreq: 'flush',
 			rp: '',
+			cmd: 'renderContent'
 		} 
-	  ).done(
-		function( data ) {
-			$('#easymark_wysiwyg_div').html(data);
-		}
-	  );
+	  ).done(replaceEasyMarkWYSIWYGDiv);
 }
 
-
  
- function gp_init_inline_edit(area_id,section_object){
+function gp_init_inline_edit(area_id,section_object){
 	var textarea, cache;
 
 	loaded();
@@ -51,8 +50,7 @@ function stuffx() {
 	wysiwygDiv = $('<div id="easymark_wysiwyg_div" style="width:50%; height:100%;margin:0;border:0 none; right:0px;display:table-cell; vertical-align:top;">Loading...</div>');
 	mainDiv.append(wysiwygDiv);
 	
-	//setInterval(stuff, 5000);
-	stuffx();
+	getGetResponseEasyMark();
 	
 	gp_editor = {
 		save_path: gp_editing.get_path(area_id),
