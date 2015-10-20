@@ -6,28 +6,32 @@ GPEasy is a fun little CMS, somehow I thought it would benefit from having a Mar
 ## Here is what works:
  * Default content
  * Section add/remove (Well, Ok, most of this is done by the CMS itself...)
- * Displaying Markdown content (The heavy lifting is done by Parsedown 1.5.0)
- * Displaying Markdown Extra content (The heavy lifting is done by Parsedown Extra 0.7.0)
+ * Displaying Markdown content (The heavy lifting is done by Parsedown)
+ * Displaying Markdown Extra content (The heavy lifting is done by Parsedown Extra)
  * Inline content editing -- Woohooo! (Ok, I copied most of the JavaScript work from the "Execute PHP" plugin available in the GPEasy repo...)
  * Downloadable from the GPEasy plugin repository: [EasyMark: MarkDown for GPEasy](http://gpeasy.com/Plugins/301_EasyMark_MarkDown_for_GPEasy)
  * WYSIWYG-like operation: not completely WYSIWYG, and not instantaneous, but this is a lot more convenient to use than without...
+ * Settings for the Parsedown renderer
 
 ## Here are some of the outstanding points:
  * add some kind of link to help or cheatsheet regarding Markdown to the inline editing part
- * would be nice to have a more user-friendly editor, like [Bootstrap-Markdown](http://www.codingdrama.com/bootstrap-markdown/)
+ * would be nice to have a more user-friendly editor, something like [Bootstrap-Markdown](http://www.codingdrama.com/bootstrap-markdown/)
 
 ## Release notes:
 
-### 1.3: WIP
- * Merged fix for JS to be able to work in cases when framework is installed under subfolder
+### 1.4: WIP
+
+#### TODO before release:
+
+
+### 1.3: Feature release
+ * Merged fix for JS to be able to work in cases when framework is installed under subfolder (thanks oyejorge!)
  * Admin page with a lot of (OK, actually 5) configurable options!
  * Fix double escaping in code blocks (actually done so by adding the admin page options)
  * WYSIWYG stuff works with POST requests instead of GET
  * Updated Parsedown to 1.6
- * Removed Special Link - now WYSIWYG implemented in Admin part
+ * Removed Special Link - now WYSIWYG implemented in Admin part, a bit less clutter
  * Some PHP and JS refactor to have nicer code 
-
-#### TODO before release:
 
 ### 1.2: Feature release
  * Markdown Extra
