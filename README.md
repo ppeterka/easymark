@@ -14,14 +14,19 @@ GPEasy is a fun little CMS, somehow I thought it would benefit from having a Mar
 
 ## Here are some of the outstanding points:
  * add some kind of link to help or cheatsheet regarding Markdown to the inline editing part
+ * would be nice to have a more user-friendly editor, like [Bootstrap-Markdown](http://www.codingdrama.com/bootstrap-markdown/)
 
 ## Release notes:
+
 ### 1.3: WIP
- * fix double escaping in code blocks
- * admin page with a lot of (OK, actually 5) configurable options!
- * WYSIWYG works with POST requests
-#### TODO:
+ * Admin page with a lot of (OK, actually 5) configurable options!
+ * Fix double escaping in code blocks (actually done so by adding the admin page options)
+ * WYSIWYG stuff works with POST requests instead of GET
+ * Updated Parsedown to 1.6
+
+#### TODO before release:
  * do a refactor to remove ugliness/clean up code both PHP and JS
+ * probably remove the Special used for the WYSIWYG editing and move the functionality to the Admin part
 
 ### 1.2: Feature release
  * Markdown Extra
@@ -31,4 +36,4 @@ GPEasy is a fun little CMS, somehow I thought it would benefit from having a Mar
 ### 1.1: Initial release, minimal functionality
  * Markdown parsing, inline editing works, as well as Section add and remove
   
-The project uses Parsedown 1.5.0 for transforming Markdown into HTML, and Parsedown Extra 0.7.0 for transforming Markdown Extra into HTML.
+The project uses [Parsedown](https://github.com/erusev/parsedown) for transforming Markdown into HTML, and [Parsedown Extra](https://github.com/erusev/parsedown-extra) for transforming Markdown Extra into HTML.
