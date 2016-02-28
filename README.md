@@ -24,6 +24,11 @@ GPEasy is a fun little CMS, somehow I thought it would benefit from having a Mar
 #### TODO before release:
 
 
+### 1.3.1: Bugfix release
+ * [Jürgen Krausz](https://github.com/juek) spotted and fixed a bug: was not compatible with PHP 5.3. Also, made JavaScript a bit nicer
+ * Added "Acknowledgements" section to admin page to thank everyone involved
+ 
+ 
 ### 1.3: Feature release
  * Merged fix for JS to be able to work in cases when framework is installed under subfolder (thanks oyejorge!)
  * Admin page with a lot of (OK, actually 5) configurable options!
