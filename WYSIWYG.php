@@ -15,7 +15,8 @@ class EasyMarkWysiwyg
 			global $addonPathCode, $page; 
 			require_once $addonPathCode."/Renderer.php";
 			
-			print (new Renderer($config, $addonPathCode."/lib/parsedown"))->render($_REQUEST['content']);
+			$renderer = new Renderer($config, $addonPathCode."/lib/parsedown");
+			print $renderer->render($_REQUEST['content']);
 		
 			//haha, very secure. NOT!
 			$nonce_str = 'EasyMark4Life!';

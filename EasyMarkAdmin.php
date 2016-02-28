@@ -45,7 +45,7 @@ class EasyMarkAdmin {
 			$this->settings = $settings;
 		}
 		else {
-			$this->settings = $defaults;
+			$this->settings = $this->defaults;
 		}
 	}
 	
@@ -96,6 +96,13 @@ class EasyMarkAdmin {
 		echo '<input type="submit" name="" value="'.$langmessage['save'].'" />';
 		
 		echo '</form>';
+
+		echo '<div><h2>Acknowledgements</h2><p>Heartful thanks for making this small thing posssible:<ul>';
+		echo '<li><strong><a href="https://github.com/oyejorge">Josh Schmidt</a></strong>: for GpEasy/Typesetter, and fixing my first issue</li>';
+		echo '<li><strong><a href="https://github.com/erusev">Emanuil Rusev</a></strong>: for ParseDown and ParseDown Extra</li>';
+		echo '<li><strong><a href="https://github.com/juek">Jürgen Krausz</a></strong>: for spotting and fixing incompatibility with PHP 5.3</li>';
+		echo '</ul></p></div>';
+
 	}
 
 	private function renderContent() {
@@ -105,7 +112,8 @@ class EasyMarkAdmin {
 			global $addonPathCode, $page; 
 			require_once $addonPathCode."/Renderer.php";
 			
-			print (new Renderer($this->settings, $addonPathCode."/lib/parsedown"))->render($_REQUEST['content']);
+			$renderer = new Renderer($this->settings, $addonPathCode."/lib/parsedown");
+			print $renderer->render($_REQUEST['content']);
 		
 			//haha, very secure. NOT!
 			$nonce_str = 'EasyMark4Life!';
@@ -114,7 +122,7 @@ class EasyMarkAdmin {
 			//"getPostResponseEasyMark" is defined in edit.js
 			print "<script>";
 				print "var postNonce = '".common::new_nonce('post',true)."';";
-				print "setTimeout(getPostResponseEasyMark, ".htmlspecialchars($this->settings['wysiwygDelay'])."*1000);";
+				print "setTimeout(gp_editor.getPostResponseEasyMark, ".htmlspecialchars($this->settings['wysiwygDelay'])."*1000);";
 			print "</script>";
 			
 			// cleanup old page object

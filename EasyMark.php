@@ -24,7 +24,8 @@ class EasyMark
 			}
 			
 			require_once $addonPathCode."/Renderer.php";
-			$section_data['content'] = (new Renderer($config, $addonPathCode."/lib/parsedown/"))->render($section_data['content']);
+			$renderer = new Renderer($config, $addonPathCode."/lib/parsedown/");
+			$section_data['content'] = $renderer->render($section_data['content']);
 		}
 		
 		return $section_data;
